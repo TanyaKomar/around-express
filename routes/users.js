@@ -6,7 +6,8 @@ router.get('/', (req, res) => {
   const filePath = path.join(__dirname, '..', 'data', 'users.json');
   fs.readFile(filePath, { encoding: 'utf8' }, (err, data) => {
     if (err) {
-      console.log(err);
+      console.error(err);
+      res.status(500).send({ message: 'The server is not responding, please contact your administrator' });
       return;
     }
     const users = JSON.parse(data);
@@ -18,7 +19,8 @@ router.get('/:id', (req, res) => {
   const filePath = path.join(__dirname, '..', 'data', 'users.json');
   fs.readFile(filePath, { encoding: 'utf8' }, (err, data) => {
     if (err) {
-      console.log(err);
+      console.error(err);
+      res.status(500).send({ message: 'The server is not responding, please contact your administrator' });
       return;
     }
     const users = JSON.parse(data);
