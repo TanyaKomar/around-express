@@ -1,17 +1,11 @@
 const router = require('express').Router();
-const fs = require('fs');
-const path = require('path');
 
-router.get('/', (req, res) => {
-  const filePath = path.join(__dirname, '..', 'data', 'cards.json');
-  fs.readFile(filePath, { encoding: 'utf8' }, (err, data) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send({ message: 'The server is not responding, please contact your administrator' });
-      return;
-    }
-    const cards = JSON.parse(data);
-    res.send(cards);
-  });
-});
+const { getCards, createCard, deleteCardById, likeCard, dislikeCard } = require('../controllers/cards');
+
+router.get('/', getCards);
+router.post('/', createCard);
+router.delete('/:cardId', deleteCardById);
+router.put('/:cardId/likes', likeCard);
+router.delete('/:cardId/likes', dislikeCard);
+
 module.exports = router;
