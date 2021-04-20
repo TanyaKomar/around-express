@@ -10,12 +10,12 @@ const cardSchema = new mongoose.Schema({
   link: {
     type: String,
     validate: {
-      validator: function(v) {
+      validator(v) {
         return /^(http:\/\/|https:\/\/)(www.)?[a-zA-Z0-9-._~:/?%#[\]@!$&'()*+,;=]+\.[a-zA-Z0-9-._~:/?%#[\]@!$&'()*+,;=]{2,}#?$/igm.test(v);
       },
-      message: props => `${props.value} is not a valid link to the picture!`
+      message: (props) => `${props.value} is not a valid link to the picture!`,
     },
-    required: [true, 'Link to the picture required']
+    required: [true, 'Link to the picture required'],
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -26,7 +26,7 @@ const cardSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: Date.now,
-  }
+  },
 });
 
 module.exports = mongoose.model('card', cardSchema);

@@ -1,11 +1,11 @@
 const express = require('express');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 const helmet = require('helmet');
 
 const { PORT = 3000 } = process.env;
+const mongoose = require('mongoose');
 const users = require('./routes/users');
 const cards = require('./routes/cards');
-const mongoose  = require('mongoose');
 
 const app = express();
 const jsonParser = bodyParser.json();
