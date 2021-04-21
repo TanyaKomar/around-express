@@ -7,7 +7,7 @@ module.exports.getCards = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  card cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'Card not found.' });
+        res.status(400).send({ message: 'Card not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -24,7 +24,7 @@ module.exports.createCard = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  card cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'Card not found.' });
+        res.status(400).send({ message: 'Card not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -44,7 +44,7 @@ module.exports.deleteCardById = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  card cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'Card not found.' });
+        res.status(400).send({ message: 'Card not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -68,7 +68,7 @@ module.exports.likeCard = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  card cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'Card not found.' });
+        res.status(400).send({ message: 'Card not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -92,7 +92,7 @@ module.exports.dislikeCard = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  card cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'Card not found.' });
+        res.status(400).send({ message: 'Card not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }

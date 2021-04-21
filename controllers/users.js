@@ -7,7 +7,7 @@ module.exports.getUsers = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  user cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'User not found.' });
+        res.status(400).send({ message: 'User not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -27,7 +27,7 @@ module.exports.getUserById = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  user cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'User not found.' });
+        res.status(400).send({ message: 'User not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -42,7 +42,7 @@ module.exports.createUser = (req, res) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  user cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'User not found.' });
+        res.status(400).send({ message: 'User not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -53,13 +53,14 @@ module.exports.updateUser = (req, res) => {
   User.findByIdAndUpdate(
     { _id: req.user._id },
     { $set: { name: req.body.name, about: req.body.about } },
+    { new: true, runValidators: true },
   )
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  user cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'User not found.' });
+        res.status(400).send({ message: 'User not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
@@ -70,13 +71,14 @@ module.exports.updateAvatar = (req, res) => {
   User.findByIdAndUpdate(
     { _id: req.user._id },
     { avatar: req.body.avatar },
+    { new: true, runValidators: true },
   )
     .then((user) => res.send({ data: user }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         res.status(400).send({ message: 'Validation failed:  user cannot be found.' });
       } else if (err.name === 'CastError') {
-        res.status(404).send({ message: 'User not found.' });
+        res.status(400).send({ message: 'User not found.' });
       } else {
         res.status(500).send({ message: 'Server error' });
       }
